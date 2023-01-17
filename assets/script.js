@@ -12,6 +12,7 @@ var timer = document.querySelector("#timer");
 var sec = 75;
 var correct = document.querySelector("#correct");
 var wrong = document.querySelector("#wrong");
+var viewScores = document.querySelector("#view-scores");
 var goBack = document.querySelector("#go-back");
 var score = 0;
 var index = 0;
@@ -81,7 +82,7 @@ function startTimer() {
   }, 1000);
 }
 
-// starts at 0 (defined by index) and shows choices 0-3 in choices array for each question.
+// starts at 0 (defined by index) and shows choices 0-3 in array for each question.
 function showQuestions() {
     question.textContent = questions[index].title;
     button1.textContent = "1. "+questions[index].choices[0];
@@ -104,18 +105,47 @@ function nextQuestion() {
 }
 
 // need to define the user selected button's text for each question compared to answer
-function answerFeedback() {
-  var userAnswer = questions[index].choices;
+function button1Feedback() {
   for(var i=0; i<questions.length; i++)
-    if (userAnswer===questions[i].answer) {
-      score + 15;
+    if (button1.textContent == questions[i].answer) {
       correct.classList.remove("hide");
-      wrong.classList.add("hide");
     } 
     else {
       sec - 10;
       wrong.classList.remove("hide");
-      correct.classList.add("hide");
+    }
+}
+
+function button2Feedback() {
+  for(var i=0; i<questions.length; i++)
+    if (button2.textContent == questions[i].answer) {
+      correct.classList.remove("hide");
+    } 
+    else {
+      sec - 10;
+      wrong.classList.remove("hide");
+    }
+}
+
+function button3Feedback() {
+  for(var i=0; i<questions.length; i++)
+    if (button3.textContent == questions[i].answer) {
+      correct.classList.remove("hide");
+    } 
+    else {
+      sec - 10;
+      wrong.classList.remove("hide");
+    }
+}
+
+function button4Feedback() {
+  for(var i=0; i<questions.length; i++)
+    if (button4.textContent == questions[i].answer) {
+      correct.classList.remove("hide");
+    } 
+    else {
+      sec - 10;
+      wrong.classList.remove("hide");
     }
 }
 
@@ -123,10 +153,10 @@ button1.addEventListener("click", nextQuestion)
 button2.addEventListener("click", nextQuestion)
 button3.addEventListener("click", nextQuestion)
 button4.addEventListener("click", nextQuestion)
-button1.addEventListener("click", answerFeedback)
-button2.addEventListener("click", answerFeedback)
-button3.addEventListener("click", answerFeedback)
-button4.addEventListener("click", answerFeedback)
+button1.addEventListener("click", button1Feedback)
+button2.addEventListener("click", button2Feedback)
+button3.addEventListener("click", button3Feedback)
+button4.addEventListener("click", button4Feedback)
 startButton.addEventListener("click", startTimer)
 startButton.addEventListener("click", startQuiz)
-goBack.addEventListener("click", )
+// goBack.addEventListener("click", function that goes to intro page or refresh?)
