@@ -11,7 +11,6 @@ var button2 = document.querySelector("#button2");
 var button3 = document.querySelector("#button3");
 var button4 = document.querySelector("#button4");
 var timer = document.querySelector("#timer");
-var sec = 75;
 var correct = document.querySelector("#correct");
 var wrong = document.querySelector("#wrong");
 var viewScores = document.querySelector("#view-scores");
@@ -81,6 +80,7 @@ var questions = [
 
 // sets an interval for the quiz timer at 75 seconds and decreases by 1 sec, displays text in timer element.
 function startTimer() {
+  var sec = 75;
   runTimer = setInterval(function () {;
     timer.textContent = sec;
     sec--;
