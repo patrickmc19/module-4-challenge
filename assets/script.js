@@ -103,6 +103,7 @@ function showQuestions() {
 function startQuiz() {
   quiz.classList.remove("hide");
   intro.classList.add("hide");
+  startTimer()
   showQuestions()
 }
 
@@ -150,6 +151,7 @@ function showHighScores() {
   quiz.classList.add("hide");
   yourScore.classList.add("hide");
   highScore.classList.remove("hide");
+  clearInterval(runTimer);
 }
 
 // navigates back to the intro section and resets clock to 75 seconds.
@@ -157,6 +159,7 @@ function redoQuiz() {
   intro.classList.remove("hide");
   highScore.classList.add("hide");
   timer.textContent = questions.length*15;
+  clearInterval(runTimer);
 }
 
 // clears local storage and the held leaderboard values.
@@ -167,44 +170,44 @@ function clearStorage() {
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
   for (var i = 0; i < questions.length; i++)
-    if (button1.textContent == questions[i].answer) {
+    if (button1.value === questions[i].answer) {
       correct.classList.remove("hide");
     }
     else {
-      sec - 10;
+      sec -= 10;
       wrong.classList.remove("hide");
     }
 }
 
 function button2Feedback() {
   for (var i = 0; i < questions.length; i++)
-    if (button2.textContent == questions[i].answer) {
+    if (button2.value === questions[i].answer) {
       correct.classList.remove("hide");
     }
     else {
-      sec - 10;
+      sec -= 10;
       wrong.classList.remove("hide");
     }
 }
 
 function button3Feedback() {
   for (var i = 0; i < questions.length; i++)
-    if (button3.textContent == questions[i].answer) {
+    if (button3.value === questions[i].answer) {
       correct.classList.remove("hide");
     }
     else {
-      sec - 10;
+      sec -= 10;
       wrong.classList.remove("hide");
     }
 }
 
 function button4Feedback() {
   for (var i = 0; i < questions.length; i++)
-    if (button4.textContent == questions[i].answer) {
+    if (button4.value === questions[i].answer) {
       correct.classList.remove("hide");
     }
     else {
-      sec - 10;
+      sec -= 10;
       wrong.classList.remove("hide");
     }
 }
@@ -218,7 +221,6 @@ button2.addEventListener("click", button2Feedback)
 button3.addEventListener("click", button3Feedback)
 button4.addEventListener("click", button4Feedback)
 submitScore.addEventListener("click", saveScore)
-startButton.addEventListener("click", startTimer)
 startButton.addEventListener("click", startQuiz)
 viewScores.addEventListener("click", showHighScores)
 submitScore.addEventListener("click", showHighScores)
