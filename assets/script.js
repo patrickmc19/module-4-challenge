@@ -16,16 +16,21 @@ var correct = document.querySelector("#correct");
 var wrong = document.querySelector("#wrong");
 var viewScores = document.querySelector("#view-scores");
 var goBack = document.querySelector("#go-back");
-var ol = document.ol;
+var ol = document.querySelector("#ol");
 var li = document.createElement("li");
+var initials = document.querySelector("#initials");
+var scoreData = [];
+var runTimer = 0;
+var finalScore = document.querySelector("#final-score");
+var clearScores = document.querySelector("#clear-scores");
 var index = 0;
 var questions = [
   {
     title: 'Commonly used data types DO NOT include:',
     choices: [
-      'strings', 
-      'booleans', 
-      'alerts', 
+      'strings',
+      'booleans',
+      'alerts',
       'numbers'
     ],
     answer: 'alerts',
@@ -33,9 +38,9 @@ var questions = [
   {
     title: 'The condition in an if / else statement is enclosed within ____.',
     choices: [
-      'quotes', 
-      'curly brackets', 
-      'parentheses', 
+      'quotes',
+      'curly brackets',
+      'parentheses',
       'square brackets'
     ],
     answer: 'parentheses',
@@ -54,9 +59,9 @@ var questions = [
     title:
       'String values must be enclosed within ____ when being assigned to variables.',
     choices: [
-      'commas', 
-      'curly brackets', 
-      'quotes', 
+      'commas',
+      'curly brackets',
+      'quotes',
       'parentheses'
     ],
     answer: 'quotes',
@@ -65,9 +70,9 @@ var questions = [
     title:
       'A very useful tool used during development and debugging for printing content to the debugger is:',
     choices: [
-      'JavaScript', 
-      'terminal / bash', 
-      'for loops', 
+      'JavaScript',
+      'terminal / bash',
+      'for loops',
       'console.log'
     ],
     answer: 'console.log',
@@ -76,8 +81,8 @@ var questions = [
 
 // sets an interval for the quiz timer at 75 seconds and decreases by 1 sec, displays text in timer element.
 function startTimer() {
-  var runTimer = setInterval(function(){
-    timer.textContent = "Timer: "+sec;
+  runTimer = setInterval(function () {;
+    timer.textContent = sec;
     sec--;
     if (sec < 0) {
       clearInterval(runTimer);
@@ -87,31 +92,57 @@ function startTimer() {
 
 // starts at 0 (defined by index) and shows choices 0-3 in array for each question.
 function showQuestions() {
-    question.textContent = questions[index].title;
-    button1.textContent = "1. "+questions[index].choices[0];
-    button2.textContent = "2. "+questions[index].choices[1];
-    button3.textContent = "3. "+questions[index].choices[2];
-    button4.textContent = "4. "+questions[index].choices[3];
+  question.textContent = questions[index].title;
+  button1.textContent = "1. " + questions[index].choices[0];
+  button2.textContent = "2. " + questions[index].choices[1];
+  button3.textContent = "3. " + questions[index].choices[2];
+  button4.textContent = "4. " + questions[index].choices[3];
 }
 
 // unhides the quiz section, hides the intro, and runs the showQuestions function
 function startQuiz() {
-    quiz.classList.remove("hide");
-    intro.classList.add("hide");
-    showQuestions()
+  quiz.classList.remove("hide");
+  intro.classList.add("hide");
+  showQuestions()
 }
 
-// increase the index by one to display the next question in the questions array
+// increase the index by one to display the next question in the questions array, once index = questions.length reveal "your score" section.
 function nextQuestion() {
-    index++;
+  index++;
+  if (index < questions.length) {
     showQuestions()
+  } else {
+    inputScore()
+  }
 }
 
-// function inputScore(index) {
-//   index === 4;
-//   quiz.classList.add("hide");
-//   yourScore.classList.remove("hide");
-// }
+// pushes local storage of inital input value & final score to score data array.
+function saveScore() {
+  scoreData.push({ initialinput: initials.value, yourscore: finalScore.textContent });
+  localStorage.setItem("initials", JSON.stringify(scoreData));
+  createHighScore();
+}
+
+// reveals the "your score" section, pasues runTimer interval, uses timer selector text content to assign final score.
+function inputScore() {
+  quiz.classList.add("hide");
+  yourScore.classList.remove("hide");
+  clearInterval(runTimer);
+  finalScore.textContent = " " + timer.textContent;
+}
+
+// retrieves score data array and creates & appends a li child to the ol.
+function createHighScore() {
+  if (localStorage.getItem("initials")) {
+    scoreData = JSON.parse(localStorage.getItem("initials"))
+  }
+  ol.textContent = "";
+  for (let i = 0; i < scoreData.length; i++) {
+    var li = document.createElement("li");
+    li.textContent = scoreData[i].initialinput + " " + scoreData[i].yourscore;
+    ol.appendChild(li);
+  }
+}
 
 // hides all sections that are not the high score section
 function showHighScores() {
@@ -121,17 +152,24 @@ function showHighScores() {
   highScore.classList.remove("hide");
 }
 
+// navigates back to the intro section and resets clock to 75 seconds.
 function redoQuiz() {
   intro.classList.remove("hide");
   highScore.classList.add("hide");
+  timer.textContent = questions.length*15;
+}
+
+// clears local storage and the held leaderboard values.
+function clearStorage() {
+  localStorage.clear();
 }
 
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
-  for(var i=0; i<questions.length; i++)
+  for (var i = 0; i < questions.length; i++)
     if (button1.textContent == questions[i].answer) {
       correct.classList.remove("hide");
-    } 
+    }
     else {
       sec - 10;
       wrong.classList.remove("hide");
@@ -139,10 +177,10 @@ function button1Feedback() {
 }
 
 function button2Feedback() {
-  for(var i=0; i<questions.length; i++)
+  for (var i = 0; i < questions.length; i++)
     if (button2.textContent == questions[i].answer) {
       correct.classList.remove("hide");
-    } 
+    }
     else {
       sec - 10;
       wrong.classList.remove("hide");
@@ -150,10 +188,10 @@ function button2Feedback() {
 }
 
 function button3Feedback() {
-  for(var i=0; i<questions.length; i++)
+  for (var i = 0; i < questions.length; i++)
     if (button3.textContent == questions[i].answer) {
       correct.classList.remove("hide");
-    } 
+    }
     else {
       sec - 10;
       wrong.classList.remove("hide");
@@ -161,10 +199,10 @@ function button3Feedback() {
 }
 
 function button4Feedback() {
-  for(var i=0; i<questions.length; i++)
+  for (var i = 0; i < questions.length; i++)
     if (button4.textContent == questions[i].answer) {
       correct.classList.remove("hide");
-    } 
+    }
     else {
       sec - 10;
       wrong.classList.remove("hide");
@@ -179,13 +217,10 @@ button1.addEventListener("click", button1Feedback)
 button2.addEventListener("click", button2Feedback)
 button3.addEventListener("click", button3Feedback)
 button4.addEventListener("click", button4Feedback)
-// button1.addEventListener("click", inputScore)
-// button2.addEventListener("click", inputScore)
-// button3.addEventListener("click", inputScore)
-// button4.addEventListener("click", inputScore)
+submitScore.addEventListener("click", saveScore)
 startButton.addEventListener("click", startTimer)
 startButton.addEventListener("click", startQuiz)
 viewScores.addEventListener("click", showHighScores)
 submitScore.addEventListener("click", showHighScores)
-goBack.addEventListener("click", redoQuiz);
-// goBack.addEventListener("click", function that goes to intro page or refresh?)
+goBack.addEventListener("click", redoQuiz)
+clearScores.addEventListener("click", clearStorage)
