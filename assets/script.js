@@ -3,6 +3,8 @@ var quiz = document.querySelector("#quiz");
 var yourScore = document.querySelector("#your-score");
 var highScore = document.querySelector("#high-score");
 var startButton = document.querySelector("#start-button");
+var viewScores = document.querySelector("#view-scores");
+var submitScore = document.querySelector("#submit-score");
 var question = document.querySelector("#question");
 var button1 = document.querySelector("#button1");
 var button2 = document.querySelector("#button2");
@@ -14,7 +16,8 @@ var correct = document.querySelector("#correct");
 var wrong = document.querySelector("#wrong");
 var viewScores = document.querySelector("#view-scores");
 var goBack = document.querySelector("#go-back");
-var score = 0;
+var ol = document.ol;
+var li = document.createElement("li");
 var index = 0;
 var questions = [
   {
@@ -104,6 +107,25 @@ function nextQuestion() {
     showQuestions()
 }
 
+// function inputScore(index) {
+//   index === 4;
+//   quiz.classList.add("hide");
+//   yourScore.classList.remove("hide");
+// }
+
+// hides all sections that are not the high score section
+function showHighScores() {
+  intro.classList.add("hide");
+  quiz.classList.add("hide");
+  yourScore.classList.add("hide");
+  highScore.classList.remove("hide");
+}
+
+function redoQuiz() {
+  intro.classList.remove("hide");
+  highScore.classList.add("hide");
+}
+
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
   for(var i=0; i<questions.length; i++)
@@ -157,6 +179,13 @@ button1.addEventListener("click", button1Feedback)
 button2.addEventListener("click", button2Feedback)
 button3.addEventListener("click", button3Feedback)
 button4.addEventListener("click", button4Feedback)
+// button1.addEventListener("click", inputScore)
+// button2.addEventListener("click", inputScore)
+// button3.addEventListener("click", inputScore)
+// button4.addEventListener("click", inputScore)
 startButton.addEventListener("click", startTimer)
 startButton.addEventListener("click", startQuiz)
+viewScores.addEventListener("click", showHighScores)
+submitScore.addEventListener("click", showHighScores)
+goBack.addEventListener("click", redoQuiz);
 // goBack.addEventListener("click", function that goes to intro page or refresh?)

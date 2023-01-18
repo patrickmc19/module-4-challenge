@@ -35,12 +35,20 @@ li button:hover {
     float: right;
 }
 
-#start-button {
+#start-button,
+#view-scores,
+#submit-score,
+#go-back,
+#clear-scores {
     background-color: white;
     border-radius: 5px;
 }
 
-#start-button:hover {
+#start-button:hover,
+#view-scores:hover,
+#submit-score:hover,
+#go-back:hover,
+#clear-scores:hover {
     background-color: aqua;
     cursor: pointer;
 }
