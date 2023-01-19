@@ -82,7 +82,7 @@ var questions = [
 // sets an interval for the quiz timer at 75 seconds and decreases by 1 sec, displays text in timer element.
 function startTimer() {
   var sec = 75;
-  runTimer = setInterval(function () {;
+  runTimer = setInterval(function () {
     timer.textContent = sec;
     sec--;
     if (sec < 0) {
@@ -159,7 +159,7 @@ function showHighScores() {
 function redoQuiz() {
   intro.classList.remove("hide");
   highScore.classList.add("hide");
-  timer.textContent = questions.length*15;
+  timer.textContent = questions.length * 15;
   clearInterval(runTimer);
 }
 
@@ -170,59 +170,59 @@ function clearStorage() {
 
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
-    if (button1.textContent == questions[index].answer) {
-      correct.classList.remove("hide");
-      wrong.classList.add("hide");
-      nextQuestion();
-    }
-    else {
-      sec -= 10;
-      wrong.classList.remove("hide");
-      correct.classList.add("hide");
-      nextQuestion();
-    }
+  if (button1.textContent == questions[index].answer) {
+    correct.classList.remove("hide");
+    wrong.classList.add("hide");
+    nextQuestion();
+  }
+  else {
+    sec -= 10;
+    wrong.classList.remove("hide");
+    correct.classList.add("hide");
+    nextQuestion();
+  }
 }
 
 function button2Feedback() {
-    if (button2.textContent == questions[index].answer) {
-      correct.classList.remove("hide");
-      wrong.classList.add("hide");
-      nextQuestion();
-    }
-    else {
-      sec -= 10;
-      wrong.classList.remove("hide");
-      correct.classList.add("hide");
-      nextQuestion();
-    }
+  if (button2.textContent == questions[index].answer) {
+    correct.classList.remove("hide");
+    wrong.classList.add("hide");
+    nextQuestion();
+  }
+  else {
+    sec -= 10;
+    wrong.classList.remove("hide");
+    correct.classList.add("hide");
+    nextQuestion();
+  }
 }
 
 function button3Feedback() {
-    if (button3.textContent == questions[index].answer) {
-      correct.classList.remove("hide");
-      wrong.classList.add("hide");
-      nextQuestion();
-    }
-    else {
-      sec -= 10;
-      wrong.classList.remove("hide");
-      correct.classList.add("hide");
-      nextQuestion();
-    }
+  if (button3.textContent == questions[index].answer) {
+    correct.classList.remove("hide");
+    wrong.classList.add("hide");
+    nextQuestion();
+  }
+  else {
+    sec -= 10;
+    wrong.classList.remove("hide");
+    correct.classList.add("hide");
+    nextQuestion();
+  }
 }
 
 function button4Feedback() {
-    if (button4.textContent == questions[index].answer) {
-      correct.classList.remove("hide");
-      wrong.classList.add("hide");
-      nextQuestion();
-    }
-    else {
-      sec -= 10;
-      wrong.classList.remove("hide");
-      correct.classList.add("hide");
-      nextQuestion();
-    }
+  if (button4.textContent == questions[index].answer) {
+    correct.classList.remove("hide");
+    wrong.classList.add("hide");
+    nextQuestion();
+  }
+  else {
+    sec -= 10;
+    wrong.classList.remove("hide");
+    correct.classList.add("hide");
+    nextQuestion();
+  }
 }
 
 button1.addEventListener("click", button1Feedback)
