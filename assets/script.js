@@ -81,7 +81,6 @@ var questions = [
 
 // sets an interval for the quiz timer at 75 seconds and decreases by 1 sec, displays text in timer element.
 function startTimer() {
-  var sec = 75;
   runTimer = setInterval(function () {
     timer.textContent = sec;
     sec--;
@@ -176,7 +175,7 @@ function button1Feedback() {
     nextQuestion();
   }
   else {
-    sec -= 10;
+    sec -= 9;
     wrong.classList.remove("hide");
     correct.classList.add("hide");
     nextQuestion();
@@ -190,7 +189,7 @@ function button2Feedback() {
     nextQuestion();
   }
   else {
-    sec -= 10;
+    sec -= 9;
     wrong.classList.remove("hide");
     correct.classList.add("hide");
     nextQuestion();
@@ -204,7 +203,7 @@ function button3Feedback() {
     nextQuestion();
   }
   else {
-    sec -= 10;
+    sec -= 9;
     wrong.classList.remove("hide");
     correct.classList.add("hide");
     nextQuestion();
@@ -218,7 +217,7 @@ function button4Feedback() {
     nextQuestion();
   }
   else {
-    sec -= 10;
+    sec -= 9;
     wrong.classList.remove("hide");
     correct.classList.add("hide");
     nextQuestion();
