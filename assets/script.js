@@ -22,6 +22,7 @@ var scoreData = [];
 var runTimer = 0;
 var finalScore = document.querySelector("#final-score");
 var clearScores = document.querySelector("#clear-scores");
+var sec = 75;
 var index = 0;
 var questions = [
   {
@@ -32,7 +33,7 @@ var questions = [
       'alerts',
       'numbers'
     ],
-    answer: 'alerts',
+    answer: '3. alerts',
   },
   {
     title: 'The condition in an if / else statement is enclosed within ____.',
@@ -42,7 +43,7 @@ var questions = [
       'parentheses',
       'square brackets'
     ],
-    answer: 'parentheses',
+    answer: '3. parentheses',
   },
   {
     title: 'Arrays in JavaScript can be used to store ____.',
@@ -52,7 +53,7 @@ var questions = [
       'booleans',
       'all of the above',
     ],
-    answer: 'all of the above',
+    answer: '4. all of the above',
   },
   {
     title:
@@ -63,7 +64,7 @@ var questions = [
       'quotes',
       'parentheses'
     ],
-    answer: 'quotes',
+    answer: '3. quotes',
   },
   {
     title:
@@ -74,7 +75,7 @@ var questions = [
       'for loops',
       'console.log'
     ],
-    answer: 'console.log',
+    answer: '4. console.log',
   },
 ];
 
@@ -117,7 +118,7 @@ function nextQuestion() {
   }
 }
 
-// pushes local storage of inital input value & final score to score data array.
+// pushes local storage of initial input value & final score to score data array.
 function saveScore() {
   scoreData.push({ initialinput: initials.value, yourscore: finalScore.textContent });
   localStorage.setItem("initials", JSON.stringify(scoreData));
@@ -169,65 +170,61 @@ function clearStorage() {
 
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
-  let sec = timer.value;
-  for (var i = 0; i < questions.length; i++)
-    if (button1.textContent === questions[i].answer) {
+    if (button1.textContent == questions[index].answer) {
       correct.classList.remove("hide");
       wrong.classList.add("hide");
+      nextQuestion();
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
       correct.classList.add("hide");
+      nextQuestion();
     }
 }
 
 function button2Feedback() {
-  let sec = timer.value;
-  for (var i = 0; i < questions.length; i++)
-    if (button2.value === questions[i].answer) {
+    if (button2.textContent == questions[index].answer) {
       correct.classList.remove("hide");
       wrong.classList.add("hide");
+      nextQuestion();
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
       correct.classList.add("hide");
+      nextQuestion();
     }
 }
 
 function button3Feedback() {
-  let sec = timer.value;
-  for (var i = 0; i < questions.length; i++)
-    if (button3.value === questions[i].answer) {
+    if (button3.textContent == questions[index].answer) {
       correct.classList.remove("hide");
       wrong.classList.add("hide");
+      nextQuestion();
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
       correct.classList.add("hide");
+      nextQuestion();
     }
 }
 
 function button4Feedback() {
-  let sec = timer.value;
-  for (var i = 0; i < questions.length; i++)
-    if (button4.value === questions[i].answer) {
+    if (button4.textContent == questions[index].answer) {
       correct.classList.remove("hide");
       wrong.classList.add("hide");
+      nextQuestion();
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
       correct.classList.add("hide");
+      nextQuestion();
     }
 }
 
-button1.addEventListener("click", nextQuestion)
-button2.addEventListener("click", nextQuestion)
-button3.addEventListener("click", nextQuestion)
-button4.addEventListener("click", nextQuestion)
 button1.addEventListener("click", button1Feedback)
 button2.addEventListener("click", button2Feedback)
 button3.addEventListener("click", button3Feedback)
