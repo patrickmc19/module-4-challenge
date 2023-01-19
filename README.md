@@ -32,7 +32,7 @@ THEN I can save my initials and score
 
 ## Screenshot
 
-
+![](./assets/coding-quiz-screenshot.jpg)
 
 ## Deployed URL
 
@@ -48,11 +48,12 @@ To master the concepts listed above. To see how the javascript code works togeth
 
 ## What problem does it solve?
 
-This project is similar to what I may see on a job interview. 
+This project is similar to what I may see on a job interview. This is preparing me for what coding will be like when it is my career.
 
 ## What did you learn?
 
-
+That sometimes less functions is more, creating too many functions that impact the core of the code can have adverse effects.
 
 ## What makes your project stand out?
 
+Clean functions that are called within other functions to simplify the coding.
