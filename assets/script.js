@@ -169,46 +169,58 @@ function clearStorage() {
 
 // need to define the user selected button's text for each question compared to answer
 function button1Feedback() {
+  let sec = timer.value;
   for (var i = 0; i < questions.length; i++)
-    if (button1.value === questions[i].answer) {
+    if (button1.textContent === questions[i].answer) {
       correct.classList.remove("hide");
+      wrong.classList.add("hide");
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
+      correct.classList.add("hide");
     }
 }
 
 function button2Feedback() {
+  let sec = timer.value;
   for (var i = 0; i < questions.length; i++)
     if (button2.value === questions[i].answer) {
       correct.classList.remove("hide");
+      wrong.classList.add("hide");
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
+      correct.classList.add("hide");
     }
 }
 
 function button3Feedback() {
+  let sec = timer.value;
   for (var i = 0; i < questions.length; i++)
     if (button3.value === questions[i].answer) {
       correct.classList.remove("hide");
+      wrong.classList.add("hide");
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
+      correct.classList.add("hide");
     }
 }
 
 function button4Feedback() {
+  let sec = timer.value;
   for (var i = 0; i < questions.length; i++)
     if (button4.value === questions[i].answer) {
       correct.classList.remove("hide");
+      wrong.classList.add("hide");
     }
     else {
       sec -= 10;
       wrong.classList.remove("hide");
+      correct.classList.add("hide");
     }
 }
 
